@@ -8,11 +8,11 @@ const seats = document.getElementById("seats");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
 const feedback = document.getElementById("feedback");
-
+const resetButton = document.getElementById("resetButton");
 
 // JS1: Add the three workshop names, then create one <option> per workshop.
 const workshops = [
-"HTML Essentials", "CSS Studio", "JavaScript Lab", 
+"HTML Essentials", "CSS Studio", "JavaScript Lab", "Accessibility Basics"
 ];
 // Write the JS1 for...of loop here.
 
@@ -38,8 +38,18 @@ form.addEventListener("submit", (event) => {
   form.classList.add("was-validated");
   feedback.hidden = true;
   feedback.className = "feedback";
+//RESET BUTTON: Add an event listener to the reset button that resets the form, clears the feedback, and removes the was-validated class from the form.
+  resetButton.addEventListener("click", () => {
+  form.reset();
 
-  
+  confirmPassword.setCustomValidity("");
+
+  feedback.textContent = "";
+  feedback.hidden = true;
+  feedback.classList.remove("error");
+
+  form.classList.remove("was-validated");
+});
 
   const trimmedName = fullName.value.trim();
   if (trimmedName.length < 2) {
